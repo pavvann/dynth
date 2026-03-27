@@ -1,0 +1,15 @@
+[package]
+name = "dynth"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+cpal = "0.15"
+midir = "0.10"
+toml = "0.8"
+serde = { version = "1", features = ["derive"] }
+atomic_float = "1.1"
+crossbeam-channel = "0.5"
+anyhow = "1"
+ratatui = "0.30"
+crossterm = "0.29"
