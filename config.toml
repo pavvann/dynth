@@ -1,0 +1,113 @@
+# dynth config — DDJ-FLX4 verified CC mappings
+# channel: 0=any, 1=MIDI-ch1 (Deck A), 2=MIDI-ch2 (Deck B), 7=MIDI-ch7 (crossfader)
+# The DDJ sends 14-bit pairs (coarse + fine CC). We use only the coarse (lower CC number).
+
+# ── Jog Wheels (relative — centered at 64) ───────────────────────────────────
+# Left deck jog: update cc once confirmed (wiggle left jog to find it)
+[[mapping]]
+device   = "DDJ-FLX4"
+type     = "cc"
+channel  = 1        # MIDI ch1 = Deck A
+cc       = 33       # confirmed: left deck jog
+param    = "jog"
+deck     = 0
+relative = true
+min      = 0.0
+max      = 0.0
+
+# Right deck jog: confirmed ch=1 (0-indexed), CC=47
+[[mapping]]
+device   = "DDJ-FLX4"
+type     = "cc"
+channel  = 2        # MIDI ch2 = Deck B
+cc       = 47
+param    = "jog"
+deck     = 1
+relative = true
+min      = 0.0
+max      = 0.0
+
+# ── Crossfader (ch=6 on DDJ, channel=7 in config) ────────────────────────────
+[[mapping]]
+device  = "DDJ-FLX4"
+type    = "cc"
+channel = 7         # DDJ sends crossfader on MIDI ch7
+cc      = 31
+param   = "crossfader"
+min     = 0.0
+max     = 1.0
+
+# ── Deck A — Left channel ─────────────────────────────────────────────────────
+# ── Deck A — Left channel ─────────────────────────────────────────────────────
+[[mapping]]
+device  = "DDJ-FLX4"
+type    = "cc"
+channel = 1
+cc      = 7         # EQ HIGH → filter cutoff (exponential: 80–8000 Hz)
+param   = "filter_cutoff"
+deck    = 0
+min     = 80.0
+max     = 8000.0
+exp     = true      # equal perceived steps across the range
+
+[[mapping]]
+device  = "DDJ-FLX4"
+type    = "cc"
+channel = 1
+cc      = 11        # EQ MID → filter resonance
+param   = "filter_resonance"
+deck    = 0
+min     = 0.0
+max     = 0.85      # cap below self-oscillation
+
+[[mapping]]
+device  = "DDJ-FLX4"
+type    = "cc"
+channel = 1
+cc      = 19        # Channel fader → Deck A volume
+param   = "volume"
+deck    = 0
+min     = 0.0
+max     = 1.0
+
+# ── Deck B — Right channel ────────────────────────────────────────────────────
+[[mapping]]
+device  = "DDJ-FLX4"
+type    = "cc"
+channel = 2
+cc      = 7         # EQ HIGH → filter cutoff
+param   = "filter_cutoff"
+deck    = 1
+min     = 80.0
+max     = 8000.0
+exp     = true
+
+[[mapping]]
+device  = "DDJ-FLX4"
+type    = "cc"
+channel = 2
+cc      = 11        # EQ MID → filter resonance
+param   = "filter_resonance"
+deck    = 1
+min     = 0.0
+max     = 0.85
+
+[[mapping]]
+device  = "DDJ-FLX4"
+type    = "cc"
+channel = 2
+cc      = 19        # Channel fader → Deck B volume
+param   = "volume"
+deck    = 1
+min     = 0.0
+max     = 1.0
+
+# ── Arturia MiniLab (any channel) ────────────────────────────────────────────
+[[mapping]]
+device  = "MiniLab"
+type    = "cc"
+channel = 0
+cc      = 74
+param   = "filter_cutoff"
+min     = 200.0
+max     = 18000.0
